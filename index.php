@@ -76,7 +76,7 @@ $statement->bindParam(':type', $type, PDO::PARAM_STR);
 
 //execute
 $statement->execute();*/
-
+/*
 //define the query
 $sql = "DELETE FROM pets WHERE id = :id";
 
@@ -88,4 +88,21 @@ $id = 1;
 $statement->bindParam(':id', $id, PDO::PARAM_INT);
 
 //execute
+$statement->execute();*/
+
+//defind the query
+$sql = "SELECT * FROM pets WHERE id = :id";
+
+//prepare the statement
+$statement = $dbh->prepare($sql);
+
+//bind the parameters
+$id = 3;
+$statement->bindParam(':id', $id, PDO::PARAM_INT);
+
+//execute the statement
 $statement->execute();
+
+//precess the result
+$row = $statement->fetch(PDO::FETCH_ASSOC);
+echo $row['name'] . ", " . $row['type'] . ", " . $row['color'];
