@@ -107,7 +107,7 @@ $statement->execute();
 $row = $statement->fetch(PDO::FETCH_ASSOC);
 echo $row['name'] . ", " . $row['type'] . ", " . $row['color'];
 */
-
+/*
 //defind the query
 $sql = "SELECT * FROM pets";
 
@@ -122,3 +122,33 @@ $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 foreach($result as $row) {
     echo $row['name'] . ", " . $row['type'] . ", " . $row['color'];
 }
+*/
+//defind the query
+$sql = "SELECT * FROM petOwners INNER JOIN
+          pets ON petOwners.petId = pets.id";
+
+//prepare the statement
+$statement = $dbh->prepare($sql);
+
+//execute the statement
+$statement->execute();
+
+//precess the result
+$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+echo '<table>
+    <tbody>
+    <th>id</th>
+    <th>first</th>
+    <th>last</th>
+    <th>pet name</th>
+';
+foreach($result as $row) {
+    echo '<tr>' .
+    '<td>' . $row['id'] . '</td>' .
+        '<td>' . $row['first'] . '</td>' .
+        '<td>' . $row['last'] . '</td>' .
+        '<td>' . $row['name'] . '</td>' .
+    '</tr>';
+}
+echo '</tbody>' .
+    '</table';
