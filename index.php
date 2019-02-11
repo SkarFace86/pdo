@@ -58,7 +58,7 @@ $statement->bindParam(':color', $color, PDO::PARAM_STR);
 $statement->execute();
 $id = $dbh->lastInsertId();
 echo "<p>Pet $id inserted successfully.</p>";*/
-
+/*
 //define the query
 $sql = "UPDATE pets SET color = :new
     WHERE name = :name AND type = :type";
@@ -73,6 +73,19 @@ $type = 'alpaca';
 $statement->bindParam(':new', $new, PDO::PARAM_STR);
 $statement->bindParam(':name', $name, PDO::PARAM_STR);
 $statement->bindParam(':type', $type, PDO::PARAM_STR);
+
+//execute
+$statement->execute();*/
+
+//define the query
+$sql = "DELETE FROM pets WHERE id = :id";
+
+//prepare the statement
+$statement = $dbh->prepare($sql);
+
+//bind the parameters
+$id = 1;
+$statement->bindParam(':id', $id, PDO::PARAM_INT);
 
 //execute
 $statement->execute();
