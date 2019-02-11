@@ -89,7 +89,7 @@ $statement->bindParam(':id', $id, PDO::PARAM_INT);
 
 //execute
 $statement->execute();*/
-
+/*
 //defind the query
 $sql = "SELECT * FROM pets WHERE id = :id";
 
@@ -106,3 +106,19 @@ $statement->execute();
 //precess the result
 $row = $statement->fetch(PDO::FETCH_ASSOC);
 echo $row['name'] . ", " . $row['type'] . ", " . $row['color'];
+*/
+
+//defind the query
+$sql = "SELECT * FROM pets";
+
+//prepare the statement
+$statement = $dbh->prepare($sql);
+
+//execute the statement
+$statement->execute();
+
+//precess the result
+$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+foreach($result as $row) {
+    echo $row['name'] . ", " . $row['type'] . ", " . $row['color'];
+}
